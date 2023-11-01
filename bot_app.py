@@ -1,3 +1,5 @@
+
+from aiogram.types import Message, CallbackQuery
 from my_token import my_token as mt
 
 import asyncio
@@ -6,9 +8,11 @@ import os
 
 from aiogram import Bot, Dispatcher
 
-from handlers import handlers_router
+from handlers import handlers_router, com_start
 
 from ihandler import callback_router
+
+from database import database_connect
 
 
 
@@ -22,11 +26,21 @@ dp = Dispatcher() # Создание сущности диспетчер.
 
 # Вывод данных в меню по работе бота
 
+
 def on_start():
     """
     Функция выполняемая при старте бота.
     """
-    print('Бот запущен!') 
+    
+    print('Бот запущен!')
+    print('База данных ', end='')
+
+    try:
+        database_connect()
+        print('подключена.')
+    except:
+        print('ошибка подключения.')
+
 
 
 
@@ -39,7 +53,7 @@ def on_stop():
 # Хендлеры. Работа с отлавливанием команд из чата бота и ответами на них.
 
 
-dp.include_routers(callback_router ,handlers_router)
+dp.include_routers(callback_router ,handlers_router) # Запуск хендлеров
 
 
 async def start_bot():

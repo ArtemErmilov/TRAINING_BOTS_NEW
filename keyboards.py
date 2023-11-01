@@ -26,7 +26,6 @@ from aiogram.filters.callback_data import CallbackData
 
 class SimpleCallBack(CallbackData, prefix = 'scb'):
     button: str 
-    text: str = ''
     name: str = ''
 
 
@@ -52,20 +51,17 @@ def kb_start_inline():
     Функция вызова кнопок. Создание шаблонной клавиатуры. 
     """
     keyboard = InlineKeyboardBuilder() # Создание сущности клавиатуры Inline
-    #keyboard.button(text='Сова') # Создание одной кнопки Сова кнопки
+    
 
-    for i in range(1,17):# Передача цифровой клавиатуры от 1 до 16. Ново введение aiogram 3,0
-        keyboard.button(text=str(i),callback_data=SimpleCallBack(button='press')) # Создание кнопки
-        # text=str(i) Подпись на кнопке
-        # callback_data='1'- функционал, который выполняет кнопка.
-    keyboard.adjust(4,2,3) # Создание кнопок в 4 ряда. Каждая цифра означает, сколько кнопок в строке.
+    for i in range(1,17):
+        keyboard.button(text=str(i),callback_data=SimpleCallBack(button='hello'))
+    
+    keyboard.adjust(4,2,3) 
 
     return keyboard.as_markup(resize_keyboard = True, one_time_keyboard=True) # Возвращение кнопки
-    # resize_keyboard=True - уменьшение размера кнопок.
-    # one_time_keyboard=True - создание одноразовой клавиатуры. Нажали кнопку она исчезла.
 
 def ikb_inline(name: str):
-    ikeboard = InlineKeyboardBuilder
-    ikeboard.button(text = 'Молодец!!!', callback_data=SimpleCallBack(button='good', name=name))
-    ikeboard.button(text = 'Чёрт', callback_data=SimpleCallBack(button='bad', name=name), self=True)
+    ikeboard = InlineKeyboardBuilder()
+    ikeboard.button(text = 'Молодец!!!',callback_data=SimpleCallBack(button='good', name=name))
+    ikeboard.button(text = 'Чёрт',callback_data=SimpleCallBack(button='bad', name=name)) 
     return ikeboard.as_markup()
