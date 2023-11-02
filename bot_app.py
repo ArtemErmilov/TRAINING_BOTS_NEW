@@ -12,7 +12,9 @@ from handlers import handlers_router, com_start
 
 from ihandler import callback_router
 
-from database import database_connect
+from not_use.database_old import database_connect
+
+from database.user import User
 
 
 
@@ -36,11 +38,10 @@ def on_start():
     print('База данных ', end='')
 
     try:
-        database_connect()
+        User.table()
         print('подключена.')
     except:
         print('ошибка подключения.')
-
 
 
 
