@@ -52,10 +52,7 @@ async def com_change(message:Message):
     """
     
     user = User(message.from_user.id)
-    print()
-    print(user)
-    print()
-    user.delete(user.tg_id)
+    user.delete()
     await message.answer('Пользователь удалён')
 
 

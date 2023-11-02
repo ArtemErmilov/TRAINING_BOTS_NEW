@@ -59,7 +59,7 @@ class User(DataBase):
     
     def delete(self,**kwargs):
         """
-        Удаление данных из БД.
+        Удаление пользователя из БД.
         """
         sql = f'DELETE FROM users WHERE tg_id=?'
         self.execute(sql,(self.tg_id,), commit= True)
