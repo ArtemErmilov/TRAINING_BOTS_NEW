@@ -15,6 +15,7 @@ from ihandler import callback_router
 from not_use.database_old import database_connect
 
 from database.user import User
+from fsm import all_fsm_routers
 
 
 
@@ -54,7 +55,7 @@ def on_stop():
 # Хендлеры. Работа с отлавливанием команд из чата бота и ответами на них.
 
 
-dp.include_routers(callback_router ,handlers_router) # Запуск хендлеров
+dp.include_routers(callback_router ,handlers_router, all_fsm_routers) # Запуск хендлеров
 
 
 async def start_bot():

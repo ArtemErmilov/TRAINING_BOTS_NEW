@@ -60,6 +60,12 @@ def kb_start_inline():
 
     return keyboard.as_markup(resize_keyboard = True, one_time_keyboard=True) # Возвращение кнопки
 
+def kb_cancel_fsm():
+    keyboard = ReplyKeyboardBuilder()
+    keyboard.button(text='отмена')
+    return keyboard.as_markup(resize_keyboard = True)
+    
+
 def ikb_inline(name: str):
     ikeboard = InlineKeyboardBuilder()
     ikeboard.button(text = 'Молодец!!!',callback_data=SimpleCallBack(button='good', name=name))
